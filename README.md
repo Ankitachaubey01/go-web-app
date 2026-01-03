@@ -13,27 +13,27 @@ Architecture:
 
 4)Install helm and create helm chart
 
-curl -LO https://get.helm.sh/helm-v3.14.0-windows-amd64.zip
-tar -xf helm-v3.14.0-windows-amd64.zip
-move windows-amd64\helm.exe C:\Windows\System32
+   curl -LO https://get.helm.sh/helm-v3.14.0-windows-amd64.zip
+   tar -xf helm-v3.14.0-windows-amd64.zip
+   move windows-amd64\helm.exe C:\Windows\System32
 
--Move yaml files from k8/maifest folder to helm folder in template path
--You can modify deployment file to take image tag value from value.yaml 
+   -Move yaml files from k8/maifest folder to helm folder in template path
+   -You can modify deployment file to take image tag value from value.yaml 
 
-5)CI: create .github/workflow folder
+5) CI: create .github/workflow folder
+   
+   ci.yaml will have steps for below:
 
-ci.yaml will have steps for below:
-
-
-<img width="1147" height="427" alt="image" src="https://github.com/user-attachments/assets/81b62a04-929f-4ebe-ad1a-aa08163b1da5" />
-
-->Take any push trigger from github->
-->Build go code->test quality->
-->Build docker image and Push iyt to docker Hub->Once new iamge is pushed to dockerhub take taht tag and update tag in helm/value.yaml 
-->once updated push latest changes and commit to git.
+   
+   <img width="1147" height="427" alt="image" src="https://github.com/user-attachments/assets/81b62a04-929f-4ebe-ad1a-aa08163b1da5" />
+   
+   ->Take any push trigger from github->
+   ->Build go code->test quality->
+   ->Build docker image and Push iyt to docker Hub->Once new iamge is pushed to dockerhub take taht tag and update tag in helm/value.yaml 
+   ->once updated push latest changes and commit to git.
 
 6) Go to Git and create secret token for docker_username and docker_password
-   generate personal access token and create token for git
+      generate personal access token and create token for git
 
 
 7) push ci to git and commit
@@ -42,10 +42,11 @@ ci.yaml will have steps for below:
   git commit -m "Update tag in Helm chart"
   git push
 
-<img width="1351" height="543" alt="image" src="https://github.com/user-attachments/assets/fe0f780a-4142-452b-ac6c-05f78d380688" />
+   <img width="1351" height="543" alt="image" src="https://github.com/user-attachments/assets/fe0f780a-4142-452b-ac6c-05f78d380688" />
 
 
-8) Install argocd using cmd from argocd folder
+8) CD:
+    Install argocd using cmd from argocd folder
 
 kubectl get svc -n argocd
 
